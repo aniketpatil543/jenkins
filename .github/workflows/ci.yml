@@ -1,7 +1,9 @@
 name: assignment-deploy
 
 on:
-  push: main
+  push:
+    branches:
+      - main
 
 jobs:
   test:
