@@ -1,0 +1,29 @@
+name: assignment-deploy
+
+on:
+  push: main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+
+        with:
+          java-version: '24'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Run Maven test
+        run: mvn clean test
+
+      - name: Package Spring Boot app
+        run: mvn clean package -DskipTests=false
+
+
+
